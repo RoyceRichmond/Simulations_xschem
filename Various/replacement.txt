@@ -1,0 +1,5 @@
+find pdk replace with  /home/richmond/pdk (home+pdk)
+
+
+C {pdk/sky130A/libs.tech/xschem/sky130_fd_pr/nfet_01v8.sym}
+
