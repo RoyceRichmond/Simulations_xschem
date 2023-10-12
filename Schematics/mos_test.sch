@@ -6,15 +6,15 @@ V {}
 S {}
 E {}
 B 2 -130 -270 670 130 {flags=graph
-y1=-1.1e+12
-y2=3.5e+11
+y1=33
+y2=1.1e+12
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1e-09
-x2=0.001
+x1=0
+x2=0.002
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -29,16 +29,16 @@ hilight_wave=1
 
 color=4
 node="\\"res_mos;vpd i(vleft) /\\""}
-B 2 250 230 1050 630 {flags=graph
-y1=5.55112e-17
-y2=1.7
+B 2 -130 -670 670 -270 {flags=graph
+y1=0
+y2=1.8
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=1e-09
-x2=0.001
+x1=0
+x2=0.002
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -50,64 +50,69 @@ unitx=1
 logx=0
 logy=0
 }
-N -260 520 -170 520 {
+N -430 -335 -340 -335 {
 lab=vg}
-N -260 520 -260 530 {
+N -430 -335 -430 -325 {
 lab=vg}
-N -290 430 -290 590 {
+N -460 -425 -460 -265 {
 lab=GND}
-N -130 520 -110 520 {
+N -300 -335 -280 -335 {
 lab=GND}
-N -130 430 -130 490 {
+N -300 -425 -300 -365 {
 lab=vpd}
-N -290 370 -220 370 {
+N -460 -485 -390 -485 {
 lab=vp}
-N -160 370 -130 370 {
+N -330 -485 -300 -485 {
 lab=vp}
-N -220 370 -160 370 {
+N -390 -485 -330 -485 {
 lab=vp}
-N -110 520 -110 610 {
+N -280 -335 -280 -245 {
 lab=GND}
-N -130 610 -110 610 {
+N -300 -245 -280 -245 {
 lab=GND}
-N -220 610 -130 610 {
+N -390 -245 -300 -245 {
 lab=GND}
-N -220 590 -220 610 {
+N -390 -265 -390 -245 {
 lab=GND}
-N -260 590 -220 590 {
+N -430 -265 -390 -265 {
 lab=GND}
-N -290 590 -260 590 {
+N -460 -265 -430 -265 {
 lab=GND}
-N -190 610 -190 620 {
+N -360 -245 -360 -235 {
 lab=GND}
-C {devices/vsource.sym} -290 400 0 0 {name=V1 value="1.8" savecurrent=true}
-C {devices/res.sym} -130 400 0 0 {name=R1
+C {devices/vsource.sym} -460 -455 0 0 {name=V1 value="1.8" savecurrent=true}
+C {devices/res.sym} -300 -455 0 0 {name=R1
 value=1k
 footprint=1206
 device=resistor
 m=1
 savecurrent=true}
-C {sky130_fd_pr/corner.sym} 110 180 0 0 {name=CORNER only_toplevel=true corner=tt}
-C {devices/code.sym} 0 180 0 0 {name=Sim_params
+C {sky130_fd_pr/corner.sym} 800 -380 0 0 {name=CORNER only_toplevel=true corner=tt}
+C {devices/code.sym} 690 -380 0 0 {name=Sim_params
 only_toplevel=true
 place=end
 value="*.options savecurrents
-.tran 10u 1.2m
+.tran 10u 2m
 .save all
 .control
 	run
 	write mos_test.raw 
 .endc
 "}
-C {devices/vsource.sym} -260 560 0 0 {name=V2 value="PULSE 0 1.8 100u 1m 1m 2m" savecurrent=true}
-C {devices/launcher.sym} 300 190 0 0 {name=h5
+C {devices/vsource.sym} -430 -295 0 0 {name=V2 value="PULSE 0 1.8 0 1m 1m 2m" savecurrent=true}
+C {devices/launcher.sym} 990 -370 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/mos_test.raw tran"
 }
-C {sky130_fd_pr/nfet_01v8_esd.sym} -150 520 0 0 {name=M2
-L=0.165
-W=20.35
-nf=1
+C {devices/gnd.sym} -360 -235 0 0 {name=l1 lab=GND}
+C {devices/ammeter.sym} -300 -275 0 1 {name=Vleft}
+C {devices/lab_pin.sym} -370 -485 1 0 {name=p1 sig_type=std_logic lab=vp}
+C {devices/lab_pin.sym} -300 -395 2 0 {name=p2 sig_type=std_logic lab=vpd}
+C {devices/lab_pin.sym} -400 -335 1 0 {name=p3 sig_type=std_logic lab=vg}
+C {sky130_fd_pr/nfet_01v8.sym} -320 -335 0 0 {name=M1
+L=0.15
+W=1
+nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
@@ -115,13 +120,6 @@ as="'int((nf+2)/2) * W/nf * 0.29'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
 nrd="'0.29 / W'" nrs="'0.29 / W'"
 sa=0 sb=0 sd=0
-model=esd_nfet_01v8
-savecurrent=true
+model=nfet_01v8
 spiceprefix=X
-
 }
-C {devices/gnd.sym} -190 620 0 0 {name=l1 lab=GND}
-C {devices/ammeter.sym} -130 580 0 1 {name=Vleft}
-C {devices/lab_pin.sym} -200 370 1 0 {name=p1 sig_type=std_logic lab=vp}
-C {devices/lab_pin.sym} -130 460 2 0 {name=p2 sig_type=std_logic lab=vpd}
-C {devices/lab_pin.sym} -230 520 1 0 {name=p3 sig_type=std_logic lab=vg}

@@ -6,15 +6,15 @@ V {}
 S {}
 E {}
 B 2 -130 -270 670 130 {flags=graph
-y1=940
-y2=1040
+y1=1000
+y2=1100
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-0.001
-x2=0.009
+x1=1e-09
+x2=0.001
 divx=5
 subdivx=1
 xlabmag=1.0
