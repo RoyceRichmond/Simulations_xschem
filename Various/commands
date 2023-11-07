@@ -1,0 +1,11 @@
+plot sample d2+6 d1+12 d0+18 top_caps+24 bottomcaps+24
+
+set color0=white
+set color1=black
+set xbrushwidth=5
+plot d0_n d1_n+4 d2_n+8 d0+12 d1+16 d2+20 sample+24
+plot top_caps bottom_caps
+
+
+set color2=rgb:FF/AD/34
+

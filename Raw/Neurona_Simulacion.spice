@@ -1,0 +1,55 @@
+** sch_path: /home/richmond/Desktop/Xschem/Schematics/Neurona_Simulacion.sch
+**.subckt Neurona_Simulacion
+XM1 net2 Vm Vm Vm sky130_fd_pr__pfet_01v8 L=10 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net2 net1 Vm Vm sky130_fd_pr__pfet_01v8 L=1 W=10 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net1 net1 Vm Vm sky130_fd_pr__pfet_01v8 L=1 W=99 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 net2 GND GND sky130_fd_pr__nfet_01v8 L=1 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 net3 net2 GND GND sky130_fd_pr__nfet_01v8 L=1 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 Vout net3 VDD VDD sky130_fd_pr__pfet_01v8 L=1 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM7 Vout net3 GND GND sky130_fd_pr__nfet_01v8 L=1 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+I2 VDD net3 100nA
+I1 net2 GND 10nA
+Vspk VDD GND 1
+C1 Vm GND 10p m=1
+Iin VDD Vm 75nA
+**** begin user architecture code
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/richmond/pdk/sky130B/libs.tech/ngspice/corners/tt.spice
+.include /home/richmond/pdk/sky130B/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/richmond/pdk/sky130B/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/richmond/pdk/sky130B/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.GLOBAL VDD
+**** begin user architecture code
+
+.options savecurrents
+.tran 100n 10m uic
+.save all
+.control
+	run
+	write Neurona_Simulacion.raw
+*plot all.Vout
+.endc
+
+
+**** end user architecture code
+.end
