@@ -1,4 +1,4 @@
-v {xschem version=3.4.4 file_version=1.2
+v {xschem version=3.4.5 file_version=1.2
 }
 G {}
 K {}
@@ -6,8 +6,8 @@ V {}
 S {}
 E {}
 B 2 630 -1070 1430 -670 {flags=graph
-y1=-4.9e-12
-y2=4.8e-12
+y1=-8.4e-13
+y2=8.3e-13
 ypos1=0
 ypos2=2
 divy=5
@@ -28,12 +28,12 @@ logx=0
 logy=0
 hilight_wave=1}
 B 2 630 -1470 1430 -1070 {flags=graph
-y1=8300
-y2=1.6e+10
+y1=7.1
+y2=11
 ypos1=0
 ypos2=2
 divy=5
-subdivy=4
+subdivy=8
 unity=1
 x1=0
 x2=0.002
@@ -47,10 +47,10 @@ color="4 5"
 dataset=-1
 unitx=1
 logx=0
-logy=0
+logy=1
 }
 B 2 630 -1870 1430 -1470 {flags=graph
-y1=0
+y1=1.3
 y2=1.8
 ypos1=0
 ypos2=2
@@ -63,14 +63,13 @@ divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node="vg
-vgp"
-color="4 5"
+node=vg
+color=4
 dataset=-1
 unitx=1
 logx=0
 logy=0
-}
+hilight_wave=1}
 N 360 -1335 360 -1325 {
 lab=vg}
 N 330 -1425 330 -1265 {
@@ -150,7 +149,7 @@ value="*.options savecurrents
 .endc
 "}
 C {devices/vsource.sym} 330 -1455 0 0 {name=V1 value="1.8" savecurrent=true}
-C {devices/vsource.sym} 360 -1295 0 0 {name=V2 value="PULSE 1.8 0 0 1m 1m 1n" savecurrent=true}
+C {devices/vsource.sym} 360 -1295 0 0 {name=V2 value="PULSE 1.8 1.4 0 1m 1m 1n" savecurrent=true}
 C {devices/gnd.sym} 360 -1265 0 0 {name=l1 lab=GND}
 C {devices/lab_pin.sym} 535 -1485 2 0 {name=p2 sig_type=std_logic lab=vpd}
 C {devices/lab_pin.sym} 360 -1335 1 0 {name=p3 sig_type=std_logic lab=vg}
@@ -195,7 +194,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {devices/vsource.sym} 1500 -1415 0 0 {name=V3 value="1.8" savecurrent=true}
-C {devices/vsource.sym} 1530 -1255 0 0 {name=V4 value="PULSE 1.8 0 0 1m 1m 1n" savecurrent=true}
+C {devices/vsource.sym} 1530 -1255 0 0 {name=V4 value="PULSE 1.8 1.4 0 1m 1m 1n" savecurrent=true}
 C {devices/gnd.sym} 1600 -1195 0 0 {name=l2 lab=GND}
 C {devices/lab_pin.sym} 1660 -1385 2 0 {name=p4 sig_type=std_logic lab=vpdp}
 C {devices/lab_pin.sym} 1530 -1295 1 0 {name=p5 sig_type=std_logic lab=vgp}
